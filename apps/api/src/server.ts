@@ -8,13 +8,14 @@ app.register(cors, {
 });
 
 
-app.get("/api/mensagem", async (request, reply) => {
-    return { mensagem: "ola backend fastfy"};
+app.get("/", async (request, reply) => {
+    return { mensagem: "API Fastify rodando com sucesso!"};
 });
 
 const start=async()=>{
     try{
         await app.listen({port: 3333, host: '0.0.0.0'});
+        console.log("Servidor rodando em localhost:3000")
 
     }catch(erro){
         app.log.error(erro);

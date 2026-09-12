@@ -1,5 +1,4 @@
 // src/models/User.ts
-
 import {Schema, model, Document} from "mongoose";
 
 // 1- Interface TS descrevendo o documento

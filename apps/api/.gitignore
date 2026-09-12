@@ -1,0 +1,19 @@
+# Dependencias Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Variaveis de ambiente
+.env*
+
+# Build e compilação (TypeScript / Fastify Build)
+dist/
+build/
+*.tsbuildinfo
+
+
+# IDES e Editores de Código
+.vscode/*
