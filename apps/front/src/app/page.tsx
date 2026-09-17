@@ -1,3 +1,66 @@
+"use client"
+import Image from "next/image";
+import styles from "./page.module.css";
+import React, {useState, ChangeEvent, FormEvent, useEffect} from "react";
+
+const BACKEND_URL=process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333";
+// 1. Tipagem das Props da Barra de Pesquisa
+interface BarraBuscaProps{
+  term: string;
+  aoMudar: (novoTerm: string)=> void;
+  placeholder?: string;
+}
+
+// function Busca(){
+// }
+// function BarraBusca({term, aoMudar, placeholder="Busque um filme..."}: BarraBuscaProps){
+//   const [query, setQuery]=useState<string>('')
+
+  
+//   return(
+//     <form action="/search" method="GET">
+//       <input 
+//         type="text" 
+//         id="campo-busca"
+//         placeholder={placeholder}
+//         onChange={Busca}
+//         />
+//       <button type="submit">
+//         Buscar
+//       </button>
+//     </form>
+//   )
+// }
+export default function Home() {
+  const [data,setData]=useState<{mensagem: string} | null>(null);
+
+  useEffect(()=>{
+    fetch(BACKEND_URL)
+    .then((res)=>res.json())
+    .then((data)=>setData(data));
+  }, []);
+
+  return (
+    <div className={styles.page}>
+      {/* escrevemos uma barra de busca por meio da tag input tipo search
+      o modo semantico e recomendado eh estruturar dentro de um formulario */}
+      <main className={styles.main}>
+        <h1>Frontend Next.js</h1>
+        <p>{data? data.mensagem: "Carregando dados da API..."}</p>
+        {/* <form action="/buscar" method="GET">
+          <label htmlFor="campo-busca">Pesquisar: </label>
+          <input type="search" id="campo-busca" name="q" placeholder="Digite o que procura" />
+          <button type="submit">Buscar</button>
+        </form> */}
+
+
+      </main>
+    </div>
+  );
+}
+
+
+/*
 import Image from "next/image";
 import styles from "./page.module.css";
 
@@ -67,3 +130,5 @@ export default function Home() {
     </div>
   );
 }
+
+*/
