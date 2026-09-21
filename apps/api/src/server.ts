@@ -3,6 +3,7 @@ import cors from "@fastify/cors";
 import "dotenv/config";
 import { connDB } from "./database/mongo.js";
 import { playlistRoutes } from "./routes/playlistRoutes.js";
+import {searchRoutes} from "./routes/search.routes.js";
 
 // Fastify é um microframework para Node.js
 // API REST
@@ -18,6 +19,7 @@ app.register(cors, {
 });
 
 app.register(playlistRoutes);
+app.register(searchRoutes);
 
 const BASE_URL = "https://api.themoviedb.org/3/movie";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
@@ -29,9 +31,17 @@ interface FilmDTO {
   sinopse: string;
   anoLancamento: string;
 }
+
+interface MovieDTO{
+  id: number;
+  tmdb_id: number;
+  title: string;
+  poster_path?: string | null;
+  overview: string;
+  release_date: string;
+}
+
 //  '/' -> rota raiz
-
-
 app.get('/', async(request, reply)=>{
   return{
     mensagem: "Integrado com sucesso ao backend Fastify"
@@ -54,6 +64,20 @@ app.get("/popular", async (request, reply) => {
     console.error("Falha ao se comunicar com a API", error);
   }
 });
+
+// inicializa servidor
+const start = async () => {
+  try {
+    await connDB();
+    await app.listen({ port: 3333, host: "0.0.0.0" });
+    console.log("🚀 Servidor rodando em localhost:3333");
+  } catch (error) {
+    app.log.error(error);
+    process.exit(1);
+  }
+};
+
+start();
 
 // app.get("/playlists", async (request, reply) => {
 //   return {
@@ -101,17 +125,3 @@ app.get("/popular", async (request, reply) => {
 //     return reply.status(500).send({ error: "erro ao buscar filmes" });
 //   }
 // });
-
-// inicializa servidor
-const start = async () => {
-  try {
-    await connDB();
-    await app.listen({ port: 3333, host: "0.0.0.0" });
-    console.log("🚀 Servidor rodando em localhost:3333");
-  } catch (erro) {
-    app.log.error(erro);
-    process.exit(1);
-  }
-};
-
-start();

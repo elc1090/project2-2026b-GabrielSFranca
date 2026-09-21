@@ -1,13 +1,23 @@
 // src/routes/userRoutes.ts
 import { FastifyInstance } from 'fastify';
-import { User } from '../models/User.js';
+import { Usuario } from '../models/Usuario.js';
 
 export async function userRoutes(fastify: FastifyInstance) {
   // Criar Usuário (Create)
   fastify.post('/users', async (request, reply) => {
     try {
-      const { name, email, age } = request.body as { name: string; email: string; age?: number };
-      const newUser = await User.create({ name, email, age });
+      const { name, nome, email, age, idade } = request.body as {
+        name?: string;
+        nome?: string;
+        email: string;
+        age?: number;
+        idade?: number;
+      };
+      const newUser = await Usuario.create({
+        nome: nome ?? name,
+        email,
+        idade: idade ?? age,
+      });
       return reply.status(201).send(newUser);
     } catch (error) {
       return reply.status(400).send({ error: 'Erro ao criar usuário', details: error });
@@ -16,7 +26,7 @@ export async function userRoutes(fastify: FastifyInstance) {
 
   // Listar Todos os Usuários (Read)
   fastify.get('/users', async (request, reply) => {
-    const users = await User.find();
+    const users = await Usuario.find();
     return reply.send(users);
   });
 
@@ -24,7 +34,7 @@ export async function userRoutes(fastify: FastifyInstance) {
   fastify.get('/users/:id', async (request, reply) => {
     try {
       const { id } = request.params as { id: string };
-      const user = await User.findById(id);
+      const user = await Usuario.findById(id);
       
       if (!user) {
         return reply.status(404).send({ message: 'Usuário não encontrado' });
@@ -39,9 +49,20 @@ export async function userRoutes(fastify: FastifyInstance) {
   fastify.put('/users/:id', async (request, reply) => {
     try {
       const { id } = request.params as { id: string };
-      const body = request.body as Partial<{ name: string; email: string; age: number }>;
+      const body = request.body as Partial<{
+        name: string;
+        nome: string;
+        email: string;
+        age: number;
+        idade: number;
+      }>;
+      const updates = {
+        nome: body.nome ?? body.name,
+        email: body.email,
+        idade: body.idade ?? body.age,
+      };
       
-      const updatedUser = await User.findByIdAndUpdate(id, body, { new: true });
+      const updatedUser = await Usuario.findByIdAndUpdate(id, updates, { new: true });
       if (!updatedUser) {
         return reply.status(404).send({ message: 'Usuário não encontrado' });
       }
@@ -55,7 +76,7 @@ export async function userRoutes(fastify: FastifyInstance) {
   fastify.delete('/users/:id', async (request, reply) => {
     try {
       const { id } = request.params as { id: string };
-      const deletedUser = await User.findByIdAndDelete(id);
+      const deletedUser = await Usuario.findByIdAndDelete(id);
       
       if (!deletedUser) {
         return reply.status(404).send({ message: 'Usuário não encontrado' });

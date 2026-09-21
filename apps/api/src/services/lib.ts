@@ -1,11 +1,9 @@
 const BASE_URL="https://api.themoviedb.org/3/movie";
 
-const linguagem="pt-BR"
-
+const linguagem="pt-BR";
 
 const filmePTBR= "https://api.themoviedb.org/3/movie/550?language=pt-BR";
 const appendToResponse=  "https://api.themoviedb.org/3/movie/550?append_to_respose=videos,images,credits";
-
 
 // Filmes
 // Series= trocar movies por tv
