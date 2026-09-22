@@ -79,6 +79,174 @@ export default function MovieSearch() {
   );
 }
 
+//"use client";
+
+// import React, { useState, ChangeEvent, FormEvent } from "react";
+
+// // 1. Definimos a tipagem das propriedades (Props) do componente
+// interface SearchBarProps {
+//   placeholder?: string;
+//   onSearch: (query: string) => void;
+// }
+
+// export default function SearchBar({ placeholder = "Pesquisar...", onSearch }: SearchBarProps) {
+//   // 2. Estado para armazenar o texto digitado
+//   const [query, setQuery] = useState<string>("");
+
+//   // 3. Tipagem correta para o evento de mudança do input
+//   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+//     setQuery(event.target.value);
+//   };
+
+//   // 4. Tipagem para o envio do formulário
+//   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+//     event.preventDefault(); // Evita o recarregamento da página
+//     onSearch(query); // Dispara a função de busca herdada do componente pai
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit} style={styles.form}>
+//       <input
+//         type="text"
+//         value={query}
+//         onChange={handleInputChange}
+//         placeholder={placeholder}
+//         style={styles.input}
+//       />
+//       <button type="submit" style={styles.button}>
+//         🔍 Buscar
+//       </button>
+//     </form>
+//   );
+// }
+
+// // Estilização básica (você pode substituir por Tailwind CSS ou CSS Modules)
+// const styles: { [key: string]: React.CSSProperties } = {
+//   form: {
+//     display: "flex",
+//     gap: "8px",
+//     width: "100%",
+//     maxWidth: "500px",
+//     margin: "20px 0",
+//   },
+//   input: {
+//     flex: 1,
+//     padding: "10px 14px",
+//     borderRadius: "6px",
+//     border: "1px solid #ccc",
+//     fontSize: "16px",
+//     outline: "none",
+//   },
+//   button: {
+//     padding: "10px 16px",
+//     backgroundColor: "#0070f3",
+//     color: "#fff",
+//     border: "none",
+//     borderRadius: "6px",
+//     cursor: "pointer",
+//     fontSize: "16px",
+//   },
+// };
+
+// /**
+//  * "use client";
+
+// import SearchBar from "@/components/SearchBar";
+
+// export default function HomePage() {
+//   // Esta função será executada sempre que o usuário clicar no botão de buscar
+//   const handleSearchSubmit = (searchTerm: string) => {
+//     console.log("Termo pesquisado pelo usuário:", searchTerm);
+    
+//     // Aqui você pode:
+//     // 1. Filtrar uma lista local
+//     // 2. Fazer um fetch para o seu backend Express (ex: localhost:3001/api/produtos?search=...)
+//     // 3. Fazer uma busca direta no Supabase
+//   };
+
+//   return (
+//     <main style={{ padding: "40px", fontFamily: "sans-serif" }}>
+//       <h1>Painel de Controle</h1>
+//       <p>Encontre os itens do seu banco de dados:</p>
+      
+    
+//       <SearchBar 
+//         placeholder="Digite o nome do produto..." 
+//         onSearch={handleSearchSubmit} 
+//       />
+//     </main>
+//   );
+// }
+//  */
+
+//'use client';
+
+// import { useState, ChangeEvent } from 'react';
+
+// // 1. Tipagem das Props da Barra de Pesquisa
+// interface BarraDePesquisaProps {
+//   termo: string;
+//   aoMudar: (novoTermo: string) => void;
+//   placeholder?: string;
+// }
+
+// // Componente Reutilizável de Input
+// export function BarraDePesquisa({ termo, aoMudar, placeholder = 'Pesquisar...' }: BarraDePesquisaProps) {
+//   const lidarComMudanca = (e: ChangeEvent<HTMLInputElement>) => {
+//     aoMudar(e.target.value);
+//   };
+
+//   return (
+//     <div className="w-full max-w-md">
+//       <input
+//         type="text"
+//         value={termo}
+//         onChange={lidarComMudanca}
+//         placeholder={placeholder}
+//         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//       />
+//     </div>
+//   );
+// }
+
+// // 2. Exemplo de uso em uma Página
+// export default function PaginaExemplo() {
+//   const [busca, setBusca] = useState<string>('');
+
+//   const itens = ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Node.js'];
+
+//   // Filtragem estática com base na digitação
+//   const itensFiltrados = itens.filter((item) =>
+//     item.toLowerCase().includes(busca.toLowerCase())
+//   );
+
+//   return (
+//     <main className="p-8 space-y-4">
+//       <h1 className="text-2xl font-bold">Lista de Tecnologias</h1>
+      
+//       <BarraDePesquisa termo={busca} aoMudar={setBusca} placeholder="Busque uma tecnologia..." />
+
+//       <ul className="list-disc pl-5">
+//         {itensFiltrados.length > 0 ? (
+//           itensFiltrados.map((item, index) => <li key={index}>{item}</li>)
+//         ) : (
+//           <p className="text-gray-500">Nenhum resultado encontrado.</p>
+//         )}
+//       </ul>
+//     </main>
+//   );
+// }
+
+// const BACKEND_URL=process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333"
+
+// export async function buscarRecurso(query: string){
+//     if(!query || query.trim() === '') return []
+//     try{
+//         const response=await fetch(`${BACKEND_URL}/api/search?query=`)
+//         `${BACKEND_URL}/api/search?query=${encodeUR
+//     }
+// }
+
 
 
 // "use client";
