@@ -1,6 +1,32 @@
-const BASE_URL = "https://api.themoviedb.org/3/search/movie?";
+export const BASE_URL="https://api.themoviedb.org/3";
+export const TOKEN=process.env.TMDB_ACCESS_TOKEN;
+const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-const TMDB_ACCESS_TOKEN=process.env.TMDB_ACCESS_TOKEN;
+// const object={
+//     Authorization: Bearer ${TMDB_ACCESS_TOKEN}
+// }
+
+// Parametros importantes
+// query=texto pesquisado 
+// language=idioma de resposta
+
+interface FilmDTO {
+  id: number;
+  titulo: string;
+  poster: string | null;
+  aval: number;
+  sinopse: string;
+  anoLancamento: string;
+}
+
+interface MovieDTO{
+  id: number;
+  tmdb_id: number;
+  title: string;
+  poster_path?: string | null;
+  overview: string;
+  release_date: string;
+}
 
 export async function pesquisaFilmes(query: string) {
   const response = await fetch(
@@ -11,7 +37,7 @@ export async function pesquisaFilmes(query: string) {
       }),
     {
       headers: {
-        Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${TOKEN}`,
         accept: "application/json",
       },
     },

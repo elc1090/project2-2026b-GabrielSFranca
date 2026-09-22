@@ -1,24 +1,21 @@
 import { FastifyInstance } from "fastify";
 import { BASE_URL, TOKEN } from "../services/tmdb.service.js";
 
-export async function searchRoutes(fastify: FastifyInstance){
+const linguagemBr="language=pt-BR";
+const appendCredits="&append_to_response=credits";
 
-    fastify.get('/search', async(request, reply)=>{
-        const { query } = request.query as { query?: string};
+export async function moviesRoutes(fastify: FastifyInstance){
 
-        if(!query || query.trim() === ''){
-            return reply.code(400).send({
-                error: "Parâmetro de busca query obrigatório"
-            });
-        }
-
+    fastify.get('/movies/:id', async(request, reply)=>{
+        const {id}=request.params as {id: string}
         if(!TOKEN){
             return reply.status(500).send({
                 error: "Token de acesso a api nao configurado"
             });
         }
 
-        const url=`${BASE_URL}/search/movie?query=${encodeURIComponent(query)}&language=pt-BR`;
+        // const iiurl=`${BASE_URL}/movie/${id}?language=pt-BR`;
+        const url=`${BASE_URL}/movie/${id}${linguagemBr}${appendCredits}`;
         try{
             const response=await fetch(
                 url,
@@ -33,7 +30,7 @@ export async function searchRoutes(fastify: FastifyInstance){
             if(!response.ok){
                 throw new Error("Falha ao buscar detalhes na api TMDB");
             }
-            
+
             const data=await response.json();
             console.log(data);
             return reply.send(data);
@@ -45,13 +42,3 @@ export async function searchRoutes(fastify: FastifyInstance){
         }
     });
 }
-
-
-        // const data=await pesquisaFilmes(query);
-        // return reply.send(data || []);
-
-// import { pesquisaFilmes } from "../services/tmdb.service.js";
-// const BASE_URL = "https://api.themoviedb.org/3/search/movie?";
-
-// export const BASE_URL="https://api.themoviedb.org/3";
-// export const token=process.env.TMDB_ACCESS_TOKEN;

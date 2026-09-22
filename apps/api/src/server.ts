@@ -4,64 +4,22 @@ import "dotenv/config";
 import { connDB } from "./database/mongo.js";
 import { playlistRoutes } from "./routes/playlistRoutes.js";
 import {searchRoutes} from "./routes/search.routes.js";
-
 // Fastify é um microframework para Node.js
 // API REST
 // Localhost significa hospedagem local
-
 // Parametros de busca= `http://localhost:3333/users?name=Gabriel`
-
 const app = Fastify({ logger: true });
 
 // habilita CORS para o front-end conseguir efetuar requisicoes de outro endereço:PORTA
 app.register(cors, {
   origin: true, // permite qlqr origem durante o desenvolvimento
 });
-
 // app.register(playlistRoutes);
 app.register(searchRoutes);
-
-const BASE_URL = "https://api.themoviedb.org/3/movie";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
-interface FilmDTO {
-  id: number;
-  titulo: string;
-  poster: string | null;
-  aval: number;
-  sinopse: string;
-  anoLancamento: string;
-}
-
-interface MovieDTO{
-  id: number;
-  tmdb_id: number;
-  title: string;
-  poster_path?: string | null;
-  overview: string;
-  release_date: string;
-}
-
 //  '/' -> rota raiz
 app.get('/', async(request, reply)=>{
   return{
     mensagem: "Integrado com sucesso ao backend Fastify"
-  }
-})
-
-app.get("/popular", async (request, reply) => {
-  const popMovieUrl = `${BASE_URL}/popular`;
-  try {
-    const response = await fetch(popMovieUrl, {
-      headers: {
-        Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN}`,
-        accept: "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log(data.results);
-    return reply.send(data.results);
-  } catch (error) {
-    console.error("Falha ao se comunicar com a API", error);
   }
 });
 
@@ -76,8 +34,27 @@ const start = async () => {
     process.exit(1);
   }
 };
-
 start();
+
+
+
+// app.get("/popular", async (request, reply) => {
+//   const popMovieUrl = `${BASE_URL}/popular`;
+//   try {
+//     const response = await fetch(popMovieUrl, {
+//       headers: {
+//         Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN}`,
+//         accept: "application/json",
+//       },
+//     });
+//     const data = await response.json();
+//     console.log(data.results);
+//     return reply.send(data.results);
+//   } catch (error) {
+//     console.error("Falha ao se comunicar com a API", error);
+//   }
+// });
+
 
 // app.get("/playlists", async (request, reply) => {
 //   return {
