@@ -18,7 +18,7 @@ app.register(cors, {
   origin: true, // permite qlqr origem durante o desenvolvimento
 });
 
-app.register(playlistRoutes);
+// app.register(playlistRoutes);
 app.register(searchRoutes);
 
 const BASE_URL = "https://api.themoviedb.org/3/movie";
@@ -68,7 +68,7 @@ app.get("/popular", async (request, reply) => {
 // inicializa servidor
 const start = async () => {
   try {
-    await connDB();
+    // await connDB();
     await app.listen({ port: 3333, host: "0.0.0.0" });
     console.log("🚀 Servidor rodando em localhost:3333");
   } catch (error) {

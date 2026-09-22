@@ -3,7 +3,7 @@ import {FastifyInstance} from "fastify";
 // const BASE_URL = "https://api.themoviedb.org/3/search/movie?";
 
 export const BASE_URL="https://api.themoviedb.org/3";
-export const TMDB_ACCESS_TOKEN=process.env.TMDB_ACCESS_TOKEN;
+export const token=process.env.TMDB_ACCESS_TOKEN;
 
 export async function searchRoutes(fastify: FastifyInstance){
 
@@ -22,12 +22,13 @@ export async function searchRoutes(fastify: FastifyInstance){
                 url,
                 {
                     headers: {
-                        Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
+                        Authorization: `Bearer ${token}`,
                         accept: "application/json",
                     }
                 },
             );
             const data=await response.json();
+            console.log(data);
             return reply.send(data);
         }catch(error){
             fastify.log.error(error);

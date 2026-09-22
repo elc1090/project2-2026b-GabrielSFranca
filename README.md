@@ -1,4 +1,85 @@
-# Movie & TV Series Personal Manager
+# Projeto: Aplicação com persistência de dados em backend
+
+![Substitua a imagem ao lado por um GIF/WEBP animado mostrando seu projeto](./moho_follow_through2.gif "GIF animado do projeto. Imagem temporária de Moho Animation https://moho.lostmarble.com/products/moho-pro-special-halls-head-college")
+
+## Acesso
+Substitua este texto pela URL para acesso ao seu app publicado. Adicione a URL também na seção "About" do seu repositório no GitHub.
+
+## Desenvolvedor(a)
+- Aluno: Gabriel França
+- Curso: Sistemas de Informação
+
+## Proposta: App Web de busca e gerenciamento pessoal de filmes e séries
+
+## Descrição
+
+* Dados obtidos de uma API pública externa;
+* Backend próprio;
+* Persistência: base de dados NoSQL.
+
+## Funcionalidades
+
+1. Pesquisar filmes e séries;
+2. Visualizar detalhes do título: capa, título, sinopse, gênero, ano, elenco, episódios, nota externa etc.;
+3. Criar playlists personalizadas;
+4. Dar uma nota ao título;
+5. Escrever uma resenha;
+6. Editar ou remover a própria avaliação.
+
+### Fora de escopo
+* Autenticação de múltiplos usuários.
+
+## Parceria/cliente/usuário
+Miguel Miron
+
+## Feedback/comentário da parceria/cliente/usuário
+Substitua este texto por um feedback produzido pelo(a) colega parceiro(a). Na modalidade A (parceria dev), o foco principal do feedback/comentário estará nas diferenças percebidas no código. Na modalidade B (parceria cliente/usuário), o foco principal do feedback/comentário estará nas funcionalidades/interface.
+
+## Desenvolvimento
+
+### Processo
+
+Substitua este texto por uma descrição do processo de desenvolvimento **em primeira pessoa, sem ajuda de IA**, explicando e justificando suas escolhas, destacando o que já sabia ou não, como lidou com dúvidas ou dificuldades específicas, que adaptações foram necessárias, etc. Evite comentários genéricos como "pedi ajuda para IA e resolvi", dando preferência para expor detalhes específicos de um problema e sua solução.
+
+### Trechos de código
+
+Indique pelo menos 3 trechos de código que você queira destacar para a turma (por exemplo, para explicar algo que aprendeu, para alertar sobre alguma dificuldade de compreensão, para mostrar uma curiosidade, etc).
+
+
+## Tecnologias
+### Linguagens e afins
+
+### Backend
+* **Linguagem:** TypeScript
+* **Framework:** Node.js + Fastify
+* **Banco de dados:** NoSQL
+* **Hospedagem:** Render
+
+### Frontend
+* **HTML5 + CSS3**
+* **Frameworks:** Next.js + React.js
+* **Hospedagem:** Vercel
+
+### Ambiente de desenvolvimento
+
+- Windows e Visual Studio Code
+- Agente Codex (OpenAI), como extensão do Visual Studio Code
+
+## Referências e créditos
+
+Substitua este trecho por uma lista bem detalhada de todo material que você consultou para ajudar no projeto, por exemplo:  URLs de vídeos ou outro material consultado, créditos para colegas que colaboraram, geradores de código, etc.
+- Gabriel Maroneze
+- Google Gemini e Gemini Notebook
+
+
+
+
+---
+Projeto entregue para a disciplina de [Desenvolvimento de Software para a Web](http://github.com/andreainfufsm/elc1090-2026b) em 2026b
+
+
+
+
 
 ## 1. Project Overview
 
